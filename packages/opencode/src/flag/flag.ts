@@ -95,10 +95,6 @@ export const Flag = {
   get MIMOCODE_FORCE_ANTHROPIC_REASONING_CONTENT() {
     return truthy("MIMOCODE_FORCE_ANTHROPIC_REASONING_CONTENT")
   },
-  // Empty/no-op tool-call loop guard: number of soft nudges (remind → replan)
-  // before the harness hard-halts the turn. N consecutive empty steps beyond
-  // this many recovery attempts terminates the turn. Mirrors TEXT_NGRAM_MAX_RECOVERY.
-  MIMOCODE_EMPTY_STEP_MAX_RECOVERY: number("MIMOCODE_EMPTY_STEP_MAX_RECOVERY") ?? 2,
 
   // Consecutive-block repetition detection for streamed reasoning + text.
   // A block of at least N tokens repeating REPEAT_THRESHOLD times consecutively
@@ -220,6 +216,9 @@ export const Flag = {
   MIMOCODE_EXPERIMENTAL_OXFMT: MIMOCODE_EXPERIMENTAL || truthy("MIMOCODE_EXPERIMENTAL_OXFMT"),
   MIMOCODE_EXPERIMENTAL_LSP_TY: truthy("MIMOCODE_EXPERIMENTAL_LSP_TY"),
   MIMOCODE_EXPERIMENTAL_LSP_TOOL: MIMOCODE_EXPERIMENTAL || truthy("MIMOCODE_EXPERIMENTAL_LSP_TOOL"),
+  // Defaults to OFF: exec (tool_script orchestration) is registered only for
+  // GPT-toolset models. Opt in here to expose it to every model.
+  MIMOCODE_ENABLE_EXEC_TOOL: truthy("MIMOCODE_ENABLE_EXEC_TOOL"),
   // Defaults to OFF for non-GPT models. GPT models enable MCP Tool Search in
   // SessionPrompt regardless of this flag. Opt in here to enable it for every
   // function-calling model.

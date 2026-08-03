@@ -290,6 +290,7 @@ export const dict = {
   "tui.command.model.cycle_favorite.title": "循环切换收藏模型",
   "tui.command.model.cycle_favorite_reverse.title": "反向循环切换收藏模型",
   "tui.command.agent.list.title": "切换智能体",
+  "tui.command.agent.force.title": "强制切换模式（绕过会话中锁定）",
   "tui.command.modalities.title": "配置输入模态",
   "tui.modalities.title": "输入模态 — {{model}}",
   "tui.modalities.saved": "输入模态已更新：{{modalities}}",
@@ -340,6 +341,8 @@ export const dict = {
   "tui.command.worktree.list.title": "工作树",
   "tui.command.theme.switch.title": "切换主题",
   "tui.command.image.switch.title": "切换背景图片",
+  "tui.dialog.agent.force.title": "强制切换模式",
+  "tui.dialog.agent.force.hint": "绕过会话中锁定 — 可切换到任意可用模式",
   "tui.dialog.image.title": "背景图片",
   "tui.dialog.image.import.option": "选择新图片…",
   "tui.dialog.image.import.title": "导入背景图片",
@@ -562,14 +565,6 @@ export const dict = {
   "tui.dialog.login.flow.invalid_code": "Code 无效，请重试",
   "tui.dialog.login.flow.copied": "已复制",
 
-  // Question i18n — plan_enter
-  "tui.question.plan_enter.question": "是否切换到 plan 模式进行结构化规划？",
-  "tui.question.plan_enter.header": "进入计划",
-  "tui.question.plan_enter.option.0.label": "是",
-  "tui.question.plan_enter.option.0.description": "切换到 plan 智能体进行只读规划",
-  "tui.question.plan_enter.option.1.label": "否",
-  "tui.question.plan_enter.option.1.description": "留在当前模式",
-
   // Question i18n — plan_exit
   "tui.question.plan_exit.question": "{{plan}} 处的计划已完成。是否切换到 build 智能体开始实现？",
   "tui.question.plan_exit.header": "退出计划",
@@ -580,6 +575,10 @@ export const dict = {
 
   // Session badges
   "tui.session.badge.auto": "自动",
+
+  // Context rebuild boundary marker (inserted by /rebuild)
+  "tui.session.rebuild_boundary.label": "上下文已重建",
+  "tui.session.rebuild_boundary.detail": "较早消息已摘要",
 
   // Workspace trust
   "trust.title": "访问工作区：",

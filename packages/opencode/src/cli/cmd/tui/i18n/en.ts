@@ -267,6 +267,7 @@ export const dict: Record<string, string> = {
   "tui.command.model.cycle_favorite.title": "Favorite cycle",
   "tui.command.model.cycle_favorite_reverse.title": "Favorite cycle reverse",
   "tui.command.agent.list.title": "Switch agent",
+  "tui.command.agent.force.title": "Force switch mode (bypass mid-session lock)",
   "tui.command.modalities.title": "Configure input modalities",
   "tui.modalities.title": "Input modalities — {{model}}",
   "tui.modalities.saved": "Input modalities updated: {{modalities}}",
@@ -317,6 +318,8 @@ export const dict: Record<string, string> = {
   "tui.command.worktree.list.title": "Worktrees",
   "tui.command.theme.switch.title": "Switch theme",
   "tui.command.image.switch.title": "Switch background image",
+  "tui.dialog.agent.force.title": "Force switch mode",
+  "tui.dialog.agent.force.hint": "Bypasses the mid-session lock — switch to any available mode",
   "tui.dialog.image.title": "Background images",
   "tui.dialog.image.import.option": "Choose new image…",
   "tui.dialog.image.import.title": "Import background image",
@@ -541,14 +544,6 @@ export const dict: Record<string, string> = {
   "tui.dialog.login.flow.invalid_code": "Invalid Code, please retry",
   "tui.dialog.login.flow.copied": "Copied",
 
-  // Question i18n — plan_enter
-  "tui.question.plan_enter.question": "Would you like to switch to plan mode for structured planning?",
-  "tui.question.plan_enter.header": "Plan",
-  "tui.question.plan_enter.option.0.label": "Yes",
-  "tui.question.plan_enter.option.0.description": "Switch to plan agent for read-only planning",
-  "tui.question.plan_enter.option.1.label": "No",
-  "tui.question.plan_enter.option.1.description": "Stay in current mode",
-
   // Question i18n — plan_exit
   "tui.question.plan_exit.question": "Plan at {{plan}} is complete. Would you like to switch to the build agent and start implementing?",
   "tui.question.plan_exit.header": "Plan",
@@ -559,6 +554,10 @@ export const dict: Record<string, string> = {
 
   // Session badges
   "tui.session.badge.auto": "Auto",
+
+  // Context rebuild boundary marker (inserted by /rebuild)
+  "tui.session.rebuild_boundary.label": "context rebuilt",
+  "tui.session.rebuild_boundary.detail": "earlier messages summarized",
 
   // Workspace trust
   "trust.title": "Accessing workspace:",

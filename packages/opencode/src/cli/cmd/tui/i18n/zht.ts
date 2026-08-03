@@ -290,6 +290,7 @@ export const dict = {
   "tui.command.model.cycle_favorite.title": "循環切換收藏模型",
   "tui.command.model.cycle_favorite_reverse.title": "反向循環切換收藏模型",
   "tui.command.agent.list.title": "切換智慧代理",
+  "tui.command.agent.force.title": "強制切換模式（繞過工作階段中鎖定）",
   "tui.command.modalities.title": "設定輸入模態",
   "tui.modalities.title": "輸入模態 — {{model}}",
   "tui.modalities.saved": "輸入模態已更新：{{modalities}}",
@@ -340,6 +341,8 @@ export const dict = {
   "tui.command.worktree.list.title": "工作樹",
   "tui.command.theme.switch.title": "切換主題",
   "tui.command.image.switch.title": "切換背景圖片",
+  "tui.dialog.agent.force.title": "強制切換模式",
+  "tui.dialog.agent.force.hint": "繞過工作階段中鎖定 — 可切換到任意可用模式",
   "tui.dialog.image.title": "背景圖片",
   "tui.dialog.image.import.option": "選擇新圖片…",
   "tui.dialog.image.import.title": "匯入背景圖片",
@@ -531,14 +534,6 @@ export const dict = {
   "tui.command.plugins.list.title": "外掛",
   "tui.command.plugins.install.title": "安裝外掛",
 
-  // Question i18n — plan_enter
-  "tui.question.plan_enter.question": "是否切換到 plan 模式進行結構化規劃？",
-  "tui.question.plan_enter.header": "進入計劃",
-  "tui.question.plan_enter.option.0.label": "是",
-  "tui.question.plan_enter.option.0.description": "切換到 plan 智慧代理進行唯讀規劃",
-  "tui.question.plan_enter.option.1.label": "否",
-  "tui.question.plan_enter.option.1.description": "留在當前模式",
-
   // Question i18n — plan_exit
   "tui.question.plan_exit.question": "{{plan}} 的計劃已完成。是否切換到 build 智慧代理開始實作？",
   "tui.question.plan_exit.header": "退出計劃",
@@ -549,6 +544,10 @@ export const dict = {
 
   // Session badges
   "tui.session.badge.auto": "自動",
+
+  // Context rebuild boundary marker (inserted by /rebuild)
+  "tui.session.rebuild_boundary.label": "上下文已重建",
+  "tui.session.rebuild_boundary.detail": "較早訊息已摘要",
 
   // Workspace trust
   "trust.title": "存取工作區：",
