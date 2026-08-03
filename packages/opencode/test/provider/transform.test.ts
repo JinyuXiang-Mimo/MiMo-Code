@@ -2173,6 +2173,43 @@ describe("ProviderTransform.ensureTrailingUserMessage - safe proactive guard (ne
       })
     }
   })
+
+  // The appended continuation turn must carry PART-ARRAY content, not a bare
+  // string. `message()` runs inside a wrapLanguageModel middleware, so it edits a
+  // LanguageModelV3Prompt whose user role only accepts Array<TextPart|FilePart>.
+  // A string reached @ai-sdk/openai-compatible's chat converter, which calls
+  // `content.map()` unconditionally for role "user" -> "content.map is not a
+  // function".
+  describe("appended continuation turn uses part-array content (openai-compatible safe)", () => {
+    test("content is an array of text parts carrying the continuation prompt", () => {
+      const msgs = [
+        { role: "user", content: [{ type: "text", text: "go" }] },
+        { role: "assistant", content: [{ type: "text", text: "real reply" }] },
+      ] as any[]
+      const result = ProviderTransform.ensureTrailingUserMessage(msgs)
+      const last = result[result.length - 1] as any
+      expect(last.role).toBe("user")
+      expect(Array.isArray(last.content)).toBe(true)
+      expect(last.content).toEqual([{ type: "text", text: "Continue." }])
+    })
+
+    test("every message reaching a provider serializer has mappable user content", () => {
+      const msgs = [
+        { role: "user", content: [{ type: "text", text: "Question?" }] },
+        {
+          role: "assistant",
+          content: [{ type: "tool-call", toolCallId: "c1", toolName: "search", input: {} }],
+        },
+      ] as any[]
+      const result = ProviderTransform.ensureTrailingUserMessage(msgs)
+      // Mirrors convertToOpenAICompatibleChatMessages: role "user" is mapped
+      // unconditionally, so a non-array content would throw here.
+      for (const msg of result as any[]) {
+        if (msg.role !== "user") continue
+        expect(() => msg.content.map((part: any) => part.type)).not.toThrow()
+      }
+    })
+  })
 })
 
 describe("ProviderTransform.dropTrailingAssistantPrefill - hard prune (reactive backstop last resort)", () => {

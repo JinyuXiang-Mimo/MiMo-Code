@@ -301,8 +301,13 @@ export function ensureTrailingUserMessage(msgs: ModelMessage[]): ModelMessage[] 
   // Already ends with user or tool (or empty) — safe to send as-is.
   if (!last || last.role !== "assistant") return trimmed
   // A content-bearing assistant is legitimately last: keep it and append a
-  // minimal user turn so the request ends with a user message.
-  return [...trimmed, { role: "user", content: CONTINUATION_PROMPT }]
+  // minimal user turn so the request ends with a user message. The content must
+  // be a PART ARRAY, not a bare string: `message()` runs inside a
+  // wrapLanguageModel middleware, so it mutates a LanguageModelV3Prompt, whose
+  // user role only accepts `Array<TextPart | FilePart>`. A string survives to
+  // the provider serializer and crashes converters that call `content.map()`
+  // unconditionally (e.g. @ai-sdk/openai-compatible chat).
+  return [...trimmed, { role: "user", content: [{ type: "text", text: CONTINUATION_PROMPT }] }]
 }
 
 // Hard prune of the trailing assistant run, discarding its content. Unlike
